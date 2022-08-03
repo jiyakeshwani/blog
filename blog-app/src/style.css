@@ -1,0 +1,194 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.flex{
+	display: flex;
+}
+.wrap{
+	flex-wrap: wrap;
+}
+.space-between{
+	justify-content: space-between;
+}
+.nav-link{
+ margin-left: 1.1rem;
+ color:  gray;
+ font-size: 1.2rem;
+ text-decoration: none;
+}
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    width: 100%;
+
+}
+.brand{
+	color: #5CB85C;
+font-size: 1.8rem;
+font-weight: 900;
+	text-decoration: none;
+}
+.hero{
+ background-color: #5CB85C;
+ padding: 3rem;
+ margin-bottom: 2rem;
+}
+h1 , .hero-p{
+	color: white;
+	text-align: center;
+}
+h1{
+	font-size: 3rem;
+	font-weight: 700;
+	margin-bottom: 1.5rem;
+}
+.hero-p{
+
+	font-size: 1.5rem;
+}
+.feed{
+	flex-basis: 70%;
+}
+.article{
+	border-bottom: 1px solid rgb(176, 175, 175);
+}
+.username{
+	color: #5CB85C;
+	font-weight: 700;
+	margin-left: 1rem;
+	font-size: 1.2rem;
+}
+
+.article-img img{
+	width: 2.3rem;
+	height: 2.3rem;
+	border-radius: 50%;
+	object-fit: cover;
+}
+.date{
+margin-left: 1rem;
+margin-top: 0.2rem;
+	color: gray;
+}
+.title{
+	text-transform: capitalize;
+	font-size: 1.6rem;
+margin-top: 1.8rem;
+	font-weight: 700;
+}
+.description{
+	color: gray;
+	margin-top: 0.3rem;
+	margin-bottom: 1.8rem;
+}
+.article{
+	padding: 1rem;
+}
+.navlink{
+	text-decoration: none;
+}
+.more-btn{
+
+	color: gray;
+}
+.more{
+	margin-bottom: 1rem;
+}
+.tag{
+	color: gray;
+	border: 1px solid gray;
+	padding: 0.5rem;
+	border-radius: 1rem;
+}
+.feed-head{
+	color: #5CB85C;
+	font-size: 1.4rem;
+
+}
+.tag-section{
+	flex-basis: 27%;
+	margin-left: 1rem;
+}
+.tag-wrapper{
+	background-color: rgb(235, 231, 231);
+	border-radius: 0.4rem;
+	margin-left: 1rem;
+}
+.tag-wrapper h3{
+	font-size: 1.5rem;
+	font-weight: 600;
+	padding: 1rem;
+}
+.tg{
+	background-color: #818A91;
+	color: white;
+	margin: 0.3rem;
+	padding: 0.3rem 0.5rem;
+	border-radius: 2rem;
+	text-transform: capitalize;
+}
+.article-hero{
+	background-color: #333333;
+}
+.h4{
+	color: white;
+	font-size: 3rem;
+	font-weight: 600;
+	margin-bottom: 3rem;
+}
+.links{
+	text-decoration: none;
+	color: #5CB85C;
+}
+.body{
+	font-size: 1.5rem;
+	text-transform: capitalize;
+	margin-bottom: 2rem;
+
+}
+.center{
+	text-align: center;
+	margin-top: 3rem;
+}
