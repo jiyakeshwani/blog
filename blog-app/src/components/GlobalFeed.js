@@ -6,34 +6,22 @@ import LoadingSpinner from "./Loader";
 class GlobalFeed extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      articles: [],
-      articleCount: 0,
-    };
-  }
-  componentDidMount() {
-    fetch(` https://mighty-oasis-08080.herokuapp.com/api/articles`)
-      .then((res) => res.json())
-      .then((articles) =>
-        this.setState({
-          articles: articles.articles,
-        })
-      )
-      .catch((err) => console.log(err));
   }
 
   render() {
+    if (this.props.articles.length < 1) {
+      return <h2>No articles Found</h2>;
+    }
     return (
       <div className="feed">
         <div>
-          <span className="feed-head">Global Feed</span>
           <hr></hr>
         </div>
-        {!this.state.articles ? (
+        {!this.props.articles ? (
           <Loader />
         ) : (
           <ul className="articles">
-            {this.state.articles.map((article) => {
+            {this.props.articles.map((article) => {
               return (
                 <li className="article" key={article.slug}>
                   <div className="flex">

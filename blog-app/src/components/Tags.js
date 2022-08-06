@@ -23,7 +23,16 @@ class Tags extends React.Component {
         <h3>Popular Tags</h3>
         <div className="flex wrap">
           {this.state.tags.map((tag) => {
-            return <div className="tg"> {tag}</div>;
+            return (
+              <div
+                key={tag}
+                onClick={() => this.props.addTab(tag)}
+                className="tg"
+              >
+                {" "}
+                {tag}
+              </div>
+            );
           })}
         </div>
       </aside>

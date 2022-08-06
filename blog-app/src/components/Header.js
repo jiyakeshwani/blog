@@ -10,13 +10,26 @@ class Header extends React.Component {
             Conduit
           </NavLink>
           <nav className="nav">
-            <NavLink className="nav-link" to="/">
+            <NavLink
+              activeClassName="active-nav"
+              className="nav-link"
+              to="/"
+              exact
+            >
               Home
             </NavLink>
-            <NavLink className="nav-link" to="/login">
+            <NavLink
+              activeClassName="active-nav"
+              className="nav-link"
+              to="/login"
+            >
               Sign in
             </NavLink>
-            <NavLink className="nav-link" to="/register">
+            <NavLink
+              activeClassName="active-nav"
+              className="nav-link"
+              to="/register"
+            >
               Sign up
             </NavLink>
           </nav>
