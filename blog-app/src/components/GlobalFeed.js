@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Loader from "./Loader";
-import LoadingSpinner from "./Loader";
 
 class GlobalFeed extends React.Component {
   constructor(props) {

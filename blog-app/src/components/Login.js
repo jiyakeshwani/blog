@@ -43,31 +43,32 @@ class Login extends React.Component {
 
     this.setState({ [name]: value, errors });
   };
-  handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("clicked");
-    const { email, password } = this.state;
+  // handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   console.log("clicked");
+  //   const { email, password } = this.state;
 
-    fetch(`https://mighty-oasis-08080.herokuapp.com/api/users`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        user: { email, password },
-      }),
-    })
-      .then((res) => {
-        if (!res.ok) {
-          res.json().then(({ errors }) => this.setState({ errors }));
-        }
-        return res.json();
-      })
-      .then(({ user }) => {
-        console.log(user);
-        this.setState({ email: "", password: "" });
-      });
-  };
+  //   fetch(`https://mighty-oasis-08080.herokuapp.com/api/users`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       user: { email, password },
+  //     }),
+  //   })
+  //     .then((res) => {
+  //       if (!res.ok) {
+  //         res.json().then(({ errors }) => this.setState({ errors }));
+  //       }
+  //       return res.json();
+  //     })
+  //     .then(({ user }) => {
+  //       console.log(user);
+  //       this.props.updateUser(user);
+  //       this.setState({ email: "", password: "" });
+  //     });
+  // };
   render() {
     return (
       <>

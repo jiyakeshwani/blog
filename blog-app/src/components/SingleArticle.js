@@ -45,11 +45,11 @@ class SingleArticle extends React.Component {
                 <h4 className="h4">{this.state.article.title}</h4>
                 <div className="flex">
                   <figure className="article-img">
-                    <img src={this.state.article.author?.image} alt="img"></img>{" "}
+                    {/* <img src={this.state.article.author?.image} alt="img"></img>{" "} */}
                   </figure>
                   <div>
                     <div className="username">
-                      {this.state.article.author?.username}
+                      {/* {this.state.article.author?.username} */}
                     </div>
                     <div className="date">{this.state.article.createdAt}</div>
                   </div>

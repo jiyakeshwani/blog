@@ -53,30 +53,31 @@ class Register extends React.Component {
     this.setState({ errors, [name]: value });
   };
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("clicked");
-    const { username, email, password } = this.state;
-    fetch(`https://mighty-oasis-08080.herokuapp.com/api/users`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        user: { username, email, password },
-      }),
-    })
-      .then((res) => {
-        if (!res.ok) {
-          res.json().then(({ errors }) => this.setState({ errors }));
-        }
-        return res.json();
-      })
-      .then(({ user }) => {
-        console.log(user);
-        this.setState({ username: "", email: "", password: "" });
-      });
-  };
+  // handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   console.log("clicked");
+  //   const { username, email, password } = this.state;
+  //   fetch(`https://mighty-oasis-08080.herokuapp.com/api/users`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       user: { username, email, password },
+  //     }),
+  //   })
+  //     .then((res) => {
+  //       if (!res.ok) {
+  //         res.json().then(({ errors }) => this.setState({ errors }));
+  //       }
+  //       return res.json();
+  //     })
+  //     .then(({ user }) => {
+  //       console.log(user);
+  //       this.props.updateUser(user);
+  //       this.setState({ username: "", email: "", password: "" });
+  //     });
+  // };
   render() {
     return (
       <>
@@ -118,7 +119,7 @@ class Register extends React.Component {
                 this.state.errors.username
               }
               type="submit"
-              onSubmit={this.handleSubmit}
+              // onSubmit={this.handleSubmit}
             >
               Sign Up
             </button>

@@ -13,6 +13,20 @@ import Register from "./Register";
 import SingleArticle from "./SingleArticle";
 
 class App extends React.Component {
+  constructor(props) {
+    super();
+    this.state = {
+      isLoggedIn: false,
+      user: null,
+    };
+  }
+
+  updateUser = (user) => {
+    this.setState({
+      isLoggedIn: true,
+      user,
+    });
+  };
   render() {
     return (
       <>
@@ -21,10 +35,10 @@ class App extends React.Component {
             <Home />
           </Route>
           <Route path="/login" exact>
-            <Login />
+            <Login updateUser={this.updateUser} />
           </Route>
           <Route path="/register" exact>
-            <Register />
+            <Register updateUser={this.updateUser} />
           </Route>
           <Route path="/articles/:slug" component={SingleArticle}></Route>
           <Route path="*" exact>
