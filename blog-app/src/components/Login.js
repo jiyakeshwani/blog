@@ -1,13 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Header from "./Header";
+import { withRouter } from "react-router-dom";
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      password: "",
+      email: "jiyakeshwani4@gmail.com",
+      password: "123456j",
       errors: {
         email: "",
         password: "",
@@ -43,42 +44,51 @@ class Login extends React.Component {
 
     this.setState({ [name]: value, errors });
   };
-  // handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   console.log("clicked");
-  //   const { email, password } = this.state;
-
-  //   fetch(`https://mighty-oasis-08080.herokuapp.com/api/users`, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       user: { email, password },
-  //     }),
-  //   })
-  //     .then((res) => {
-  //       if (!res.ok) {
-  //         res.json().then(({ errors }) => this.setState({ errors }));
-  //       }
-  //       return res.json();
-  //     })
-  //     .then(({ user }) => {
-  //       console.log(user);
-  //       this.props.updateUser(user);
-  //       this.setState({ email: "", password: "" });
-  //     });
-  // };
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const { email, password } = this.state;
+    fetch(`https://mighty-oasis-08080.herokuapp.com/api/users/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ user: { email, password } }),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          return res.json().then(({ errors }) => {
+            return Promise.reject(errors);
+          });
+        }
+        return res.json();
+      })
+      .then(({ user }) => {
+        console.log(user);
+        this.props.updateUser(user);
+ 
+        this.props.history.push("/");
+      })
+      .catch((errors) =>
+        this.setState((prevState) => {
+          return {
+            ...prevState,
+            errors: {
+              ...prevState.errors,
+              email: "Email or Password Not Valid",
+            },
+          };
+        })
+      );
+  };
   render() {
     return (
       <>
-        <Header />
         <section className="login">
           <h4>Sign In</h4>
           <NavLink className="link" to="/register">
             Need an Account?
           </NavLink>
-          <form className="form">
+          <form className="form" onSubmit={this.handleSubmit}>
             <input
               type="email"
               name="email"
@@ -108,4 +118,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);

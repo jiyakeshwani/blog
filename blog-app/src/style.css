@@ -288,3 +288,19 @@ margin-top: 1.8rem;
 	font-weight: 600;
 	margin-bottom: 1rem;
 }
+.no-match{
+	font-weight: 700;
+	font-size: 3rem;
+	text-align: center;
+}
+.new-post{
+	max-width: 1000px;
+	margin-top: 3rem;
+}
+.new-post input{
+	display: block;
+	width: 100%;
+	padding: 1rem;
+	margin-bottom: 1.5rem;
+     
+}

@@ -68,7 +68,6 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <Header />
         <Hero />
         <div className="container  flex ">
           <div className="feed">
