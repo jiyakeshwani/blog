@@ -301,6 +301,91 @@ margin-top: 1.8rem;
 	display: block;
 	width: 100%;
 	padding: 1rem;
-	margin-bottom: 1.5rem;
+	margin-bottom: 2rem;
      
+}
+
+.hero-profile{
+	background-color: #F3F3F3;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding: 3rem;
+}
+.hero-profile figure{
+	width: 15%;
+}
+.hero-profile img{
+	width: 100%;
+}
+h5{
+	font-weight: 700;
+	font-size: 2rem;
+	margin-top: 1rem;
+}
+.active-articles{
+	border: 3px solid green;
+	background-color: white;
+	color: green;
+	
+	font-weight: 600;
+	font-size: 1.2rem;
+	padding: 0.5rem;
+	margin-left: 1rem;
+}
+.articles-button{
+	background-color: white;
+	color: rgb(108, 106, 106);
+	border: 0;
+	font-weight: 600;
+	font-size: 1.2rem;
+	padding: 0.5rem;
+	margin-left: 1rem;
+	
+}
+li{
+	list-style: none;
+}
+.follow{
+	margin-top: 1.5rem;
+	align-items: flex-end;
+}
+.settings{
+	
+	margin-top: 1rem;
+	max-width: 700px;
+	padding: 1.5rem;
+}
+.settings input{
+	display: block;
+	width: 100%;
+	margin-bottom: 2rem;
+	padding: 1rem 0.5rem;
+}
+
+.settings-button{
+	color: white;
+	background-color: #5CB85C;
+	border: 0;
+	padding: 1rem;
+	font-size: 1.2rem;
+	font-weight: 500;
+}
+.new-post button{
+	color: white;
+	background-color: #5CB85C;
+	border: 0;
+	padding: 1rem;
+	font-size: 1.2rem;
+	font-weight: 500;
+
+}
+.logout{
+	border: 1px solid red;
+	color: red;
+background-color: white;
+font-size: 1rem;
+font-weight: 400;
+padding: 0.5rem;
 }

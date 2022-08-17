@@ -65,7 +65,7 @@ class Login extends React.Component {
       .then(({ user }) => {
         console.log(user);
         this.props.updateUser(user);
- 
+
         this.props.history.push("/");
       })
       .catch((errors) =>

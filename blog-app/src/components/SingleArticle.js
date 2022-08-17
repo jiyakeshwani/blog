@@ -1,12 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Header from "./Header";
+import { withRouter } from "react-router-dom";
+import Loader from "./Loader";
 
 class SingleArticle extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      article: {},
+      article: null,
       error: "",
     };
   }
@@ -36,7 +38,9 @@ class SingleArticle extends React.Component {
     console.log(this.state.article);
     return (
       <>
-        {this.state.article ? (
+        {!this.state.article ? (
+          <Loader />
+        ) : (
           <>
             <section className="article-hero">
               <div className="container">
@@ -57,24 +61,28 @@ class SingleArticle extends React.Component {
             <section className="container">
               <p className="body">{this.state.article.body}</p>
               <hr />
-              <p className="center">
-                <NavLink className="links" to="/login">
-                  Sign in
-                </NavLink>{" "}
-                or{" "}
-                <NavLink className="links" to="/register">
-                  Sign up
-                </NavLink>{" "}
-                to add comments on this article
-              </p>
+              {this.props.user === null ? (
+                <>
+                  <p className="center">
+                    <NavLink className="links" to="/login">
+                      Sign in
+                    </NavLink>{" "}
+                    or{" "}
+                    <NavLink className="links" to="/register">
+                      Sign up
+                    </NavLink>{" "}
+                    to add comments on this article
+                  </p>
+                </>
+              ) : (
+                ""
+              )}
             </section>
           </>
-        ) : (
-          <p>loading article.....</p>
         )}
       </>
     );
   }
 }
 
-export default SingleArticle;
+export default withRouter(SingleArticle);

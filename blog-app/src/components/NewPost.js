@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 
 class NewPost extends React.Component {
   constructor(props) {
@@ -24,6 +25,45 @@ class NewPost extends React.Component {
       [name]: value,
       errors,
     });
+  };
+  handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("submitted");
+    let { title, body, about, tags } = this.state;
+    fetch(`https://mighty-oasis-08080.herokuapp.com/api/articles`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Token ${this.props.user.token}`,
+      },
+      body: JSON.stringify({
+        article: {
+          title,
+          about,
+          body,
+          tags: tags.split(",").map((tag) => tag.trim()),
+        },
+      }),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          return res.json().then(({ errors }) => {
+            return Promise.reject(errors);
+          });
+        }
+        return res.json();
+      })
+      .then(({ article }) => {
+        console.log(article);
+        this.setState({
+          title: "",
+          about: "",
+          body: "",
+          tags: "",
+        });
+        this.props.history.push("/");
+      })
+      .catch((errors) => this.setState({ errors }));
   };
   render() {
     let { errors } = this.state;
@@ -62,11 +102,13 @@ class NewPost extends React.Component {
             onChange={this.handleChange}
           />
           <span className="error">{errors.tags}</span>
-          <button type="submit">Publish Article</button>
+          <button type="submit" onClick={this.handleSubmit}>
+            Publish Article
+          </button>
         </fieldset>
       </form>
     );
   }
 }
 
-export default NewPost;
+export default withRouter(NewPost);

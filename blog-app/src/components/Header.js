@@ -32,7 +32,6 @@ function AuthHeader() {
         <i class="ion-compose"></i>New Post
       </NavLink>
       <NavLink activeClassName="active-nav" className="nav-link" to="/settings">
-        <FontAwesomeIcon icon="fa-solid fa-gear" />
         Settings
       </NavLink>
       <NavLink activeClassName="active-nav" className="nav-link" to="/profile">
