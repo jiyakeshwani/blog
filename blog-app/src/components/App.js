@@ -16,6 +16,7 @@ import FullPageSpinner from "./FullPageSpinner";
 import NewPost from "./NewPost";
 import Settings from "./Settings";
 import Profile from "./Profile";
+import EditArticle from "./EditArticle";
 
 class App extends React.Component {
   constructor(props) {
@@ -24,6 +25,7 @@ class App extends React.Component {
       isLoggedIn: false,
       user: null,
       isVerifying: true,
+      profile: "",
     };
   }
 
@@ -69,6 +71,7 @@ class App extends React.Component {
           <AuthenticatedApp
             user={this.state.user}
             updateUser={this.updateUser}
+            profile={this.state.profile}
           />
         ) : (
           <UnauthenticatedApp
@@ -85,7 +88,7 @@ function AuthenticatedApp(props) {
   return (
     <Switch>
       <Route path="/" exact>
-        <Home />
+        <Home user={props.user} />
       </Route>
 
       <Route path="/articles/:slug">
@@ -100,6 +103,9 @@ function AuthenticatedApp(props) {
       </Route>
       <Route path="/profile">
         <Profile user={props.user} />
+      </Route>
+      <Route path="/editArticle/:slug">
+        <EditArticle user={props.user} />
       </Route>
       <Route path="*">
         <Nomatch />

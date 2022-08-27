@@ -1,11 +1,25 @@
 import React from "react";
 import Posts from "./Posts";
+import { withRouter } from "react-router-dom";
 
 class Profile extends React.Component {
   state = {
     activeTab: "author",
     articles: [],
+    profile: this.props.user,
   };
+
+  componentDidMount() {
+    this.fetchProfile();
+    this.fetchData();
+  }
+
+  componentDidUpdate(preProps, preState) {
+    if (preProps.user.username !== this.props.user.username) {
+      this.fetchProfile();
+      this.fetchData();
+    }
+  }
   fetchData = () => {
     fetch(
       ` https://mighty-oasis-08080.herokuapp.com/api/articles` +
@@ -26,9 +40,27 @@ class Profile extends React.Component {
       )
       .catch((err) => console.log(err));
   };
-  componentDidMount() {
-    this.fetchData();
-  }
+
+  fetchProfile = () => {
+    fetch(
+      ` https://mighty-oasis-08080.herokuapp.com/api/user` +
+        `/${this.props.user.username}`
+    )
+      .then((res) => {
+        if (!res.ok) {
+          res.json().then(({ errors }) => {
+            return Promise.reject(errors);
+          });
+        }
+        return res.json();
+      })
+      .then(({ profile }) => {
+        console.log({ profile });
+        this.setState({ profile });
+      })
+      .catch((error) => console.log(error));
+  };
+
   handleActiveTab = (tab) => {
     this.setState({ activeTab: tab }, () => this.fetchData());
   };
@@ -78,4 +110,4 @@ class Profile extends React.Component {
   }
 }
 
-export default Profile;
+export default withRouter(Profile);

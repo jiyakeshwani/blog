@@ -7,6 +7,9 @@ import {
   brands,
 } from "@fortawesome/fontawesome-svg-core/import.macro";
 class Header extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
     return (
       <>
@@ -15,14 +18,18 @@ class Header extends React.Component {
             Conduit
           </NavLink>
 
-          {this.props.isLoggedIn ? <AuthHeader /> : <NonAuthHeader />}
+          {this.props.isLoggedIn ? (
+            <AuthHeader user={this.props.user} />
+          ) : (
+            <NonAuthHeader />
+          )}
         </header>
       </>
     );
   }
 }
 
-function AuthHeader() {
+function AuthHeader(props) {
   return (
     <nav className="nav">
       <NavLink activeClassName="active-nav" className="nav-link" to="/" exact>
@@ -34,7 +41,11 @@ function AuthHeader() {
       <NavLink activeClassName="active-nav" className="nav-link" to="/settings">
         Settings
       </NavLink>
-      <NavLink activeClassName="active-nav" className="nav-link" to="/profile">
+      <NavLink
+        activeClassName="active-nav"
+        className="nav-link"
+        to={`/profile/${props.user.username}`}
+      >
         Profile
       </NavLink>
     </nav>
