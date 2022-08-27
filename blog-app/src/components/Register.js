@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./Header";
 import { NavLink } from "react-router-dom";
-import { json } from "express";
+import { withRouter } from "react-router-dom";
 
 class Register extends React.Component {
   constructor(props) {
@@ -52,42 +52,41 @@ class Register extends React.Component {
 
     this.setState({ errors, [name]: value });
   };
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const { username, email, password } = this.state;
+    fetch(`https://mighty-oasis-08080.herokuapp.com/api/users`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ user: { username, email, password } }),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          return res.json().then(({ errors }) => {
+            return Promise.reject(errors);
+          });
+        }
+        return res.json();
+      })
+      .then(({ user }) => {
+        console.log(user);
+        this.props.updateUser(user);
 
-  // handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   console.log("clicked");
-  //   const { username, email, password } = this.state;
-  //   fetch(`https://mighty-oasis-08080.herokuapp.com/api/users`, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       user: { username, email, password },
-  //     }),
-  //   })
-  //     .then((res) => {
-  //       if (!res.ok) {
-  //         res.json().then(({ errors }) => this.setState({ errors }));
-  //       }
-  //       return res.json();
-  //     })
-  //     .then(({ user }) => {
-  //       console.log(user);
-  //       this.props.updateUser(user);
-  //       this.setState({ username: "", email: "", password: "" });
-  //     });
-  // };
+        this.props.history.push("/");
+      })
+      .catch((errors) => this.setState({ errors }));
+  };
   render() {
     return (
       <>
-        <Header />
         <section className="register">
           <h4>Sign Up</h4>
           <NavLink className="link" to="/login">
             Have an Account?
           </NavLink>
-          <form className="form">
+          <form className="form" onSubmit={this.handleSubmit}>
             <input
               type="text"
               name="username"
@@ -112,17 +111,7 @@ class Register extends React.Component {
               placeholder="Password"
             />
             <p className="error">{this.state.errors.password}</p>
-            <button
-              disabled={
-                this.state.errors.email ||
-                this.state.errors.password ||
-                this.state.errors.username
-              }
-              type="submit"
-              // onSubmit={this.handleSubmit}
-            >
-              Sign Up
-            </button>
+            <button type="submit">Sign Up</button>
           </form>
         </section>
       </>
@@ -130,4 +119,4 @@ class Register extends React.Component {
   }
 }
 
-export default Register;
+export default withRouter(Register);

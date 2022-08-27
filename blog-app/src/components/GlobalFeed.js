@@ -11,6 +11,7 @@ class GlobalFeed extends React.Component {
     if (this.props.articles.length < 1) {
       return <h2>No articles Found</h2>;
     }
+
     return (
       <div className="feed">
         <div>
@@ -24,10 +25,13 @@ class GlobalFeed extends React.Component {
               return (
                 <li className="article" key={article.slug}>
                   <div className="flex">
-                    <figure className="article-img">
+                    <NavLink
+                      to={`/profile/${article.author.username}`}
+                      className="article-img"
+                    >
                       {" "}
                       <img src={article.author.image} alt="img"></img>{" "}
-                    </figure>
+                    </NavLink>
                     <div>
                       <div className="username">{article.author.username}</div>
                       <div className="date">{article.createdAt}</div>

@@ -68,7 +68,6 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <Header />
         <Hero />
         <div className="container  flex ">
           <div className="feed">
@@ -80,6 +79,7 @@ class Home extends React.Component {
               articles={this.state.articles}
               articleCount={this.state.articleCount}
               error={this.state.error}
+              user={this.props.user}
             />
             <Pagination
               articlesPerPage={this.state.articlesPerPage}
